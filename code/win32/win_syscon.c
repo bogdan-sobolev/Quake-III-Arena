@@ -533,6 +533,11 @@ void Conbuf_AppendText( const char *pMsg )
 	//
 	// copy into an intermediate buffer
 	//
+	/*
+	BOGDAN_NOTE: continue traversing the msg until either
+	1) the message is empty (null terminator reached), or
+	2) the "walking" pointer b points to the last byte of the buffer
+	*/
 	while ( msg[i] && ( ( b - buffer ) < sizeof( buffer ) - 1 ) )
 	{
 		if ( msg[i] == '\n' && msg[i+1] == '\r' )
