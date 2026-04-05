@@ -438,6 +438,10 @@ LONG WINAPI MainWndProc (
 		}
 		// fall through
 	case WM_KEYDOWN:
+		/*
+		BOGDAN_NOTE: g_wv.sysMsgTime is the exact time at which the key was pressed 
+		(we set g_wv.sysMsgTime when we pump OS messages in the OS message loop)
+		*/
 		Sys_QueEvent( g_wv.sysMsgTime, SE_KEY, MapKey( lParam ), qtrue, 0, NULL );
 		break;
 
