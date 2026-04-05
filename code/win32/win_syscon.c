@@ -192,13 +192,6 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 //		s_wcd.hbmClearBitmap = LoadBitmap( g_wv.hInstance, MAKEINTRESOURCE( IDB_BITMAP2 ) );
 		s_wcd.hbrEditBackground = CreateSolidBrush( RGB( 0x00, 0x00, 0xB0 ) );
 		s_wcd.hbrErrorBackground = CreateSolidBrush( RGB( 0x80, 0x80, 0x80 ) );
-
-		/*
-		BOGDAN_NOTE: the second argument is the timer identifier, in this case set to 1.
-		It is compared against wParam in the switch case for WM_TIMER 
-		to make sure that the timer event captured there
-		by the WM_TIMER message comes exactly from the timer we set here
-		*/
 		SetTimer( hWnd, 1, 1000, NULL );
 		break;
 	case WM_ERASEBKGND:
@@ -250,13 +243,6 @@ static LONG WINAPI ConWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 #endif
 	    return DefWindowProc( hWnd, uMsg, wParam, lParam );
 	case WM_TIMER:
-		/*
-		BOGDAN_NOTE: for a WM_TIMER message, the value of wParam is 
-		the identifier of the timer that sent the message.
-		Therefore, if it is equal to 1, 
-		then it was exactly the timer that we set in the switch case WM_CREATE
-		(because there we defined the timer ID to be equal to 1)
-		*/
 		if ( wParam == 1 )
 		{
 			s_timePolarity = !s_timePolarity;
