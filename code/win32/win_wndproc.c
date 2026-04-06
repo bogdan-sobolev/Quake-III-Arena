@@ -151,7 +151,10 @@ static int MapKey (int key)
 	qboolean is_extended;
 
 //	Com_Printf( "0x%x\n", key);
-
+	
+/*
+BOGDAN_NOTE: exctract the scancode bits from lParam
+*/	
 	modified = ( key >> 16 ) & 255;
 
 	if ( modified > 127 )
