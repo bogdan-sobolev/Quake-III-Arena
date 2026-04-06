@@ -437,6 +437,12 @@ LONG WINAPI MainWndProc (
 			return 0;
 		}
 		// fall through
+
+	/*
+	BOGDAN_NOTE: We pass lParam instead of wParam to MapKey(). 
+	This means that MapKey() uses the (OEM dependent) scancode of the key, 
+	and not the virtual key provided by the OS. The question is, why?...
+	*/
 	case WM_KEYDOWN:
 		/*
 		BOGDAN_NOTE: g_wv.sysMsgTime is the exact time at which the key was pressed 
