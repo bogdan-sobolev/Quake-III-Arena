@@ -445,6 +445,13 @@ LONG WINAPI MainWndProc (
 	BOGDAN_NOTE: We pass lParam instead of wParam to MapKey(). 
 	This means that MapKey() uses the (OEM dependent) scancode of the key, 
 	and not the virtual key provided by the OS. The question is, why?...
+	BOGDAN_NOTE: Upd: the following is the answer from MSDN:
+		While virtual key codes are typically more useful to desktop applications, 
+		scan codes might be required in specific cases when you need to know which key 
+		is pressed regardless of the current keyboard layout. 
+		For example, the WASD (W is up, A is left, S is down, and D is right) key bindings for games, 
+		which ensure a consistent key formation across US QWERTY or French AZERTY keyboard layouts.
+	It seems that we are allowed to assume that the scancode layout is constant across keyboard devices
 	*/
 	case WM_KEYDOWN:
 		/*
